@@ -30,14 +30,5 @@ npx http-server -p 8080
 ```
 Then simply navigate to `http://localhost:8080` in your web browser.
 
-## 🌐 Deploying to GitHub Pages
-
-This repository is pre-configured to be hosted directly on **GitHub Pages**:
-1. Navigate to your repository's **Settings** tab.
-2. Under "Code and automation" on the sidebar, click on **Pages**.
-3. Under "Build and deployment", set the source to **Deploy from a branch**.
-4. Select your **`main`** branch and the **`/ (root)`** folder, then hit **Save**.
-5. Your Speedtest will be live instantly on your `github.io` domain!
-
 ---
 *Built for precision and visual excellence.* 🚀
