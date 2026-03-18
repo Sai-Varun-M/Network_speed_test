@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Speedtest | 512Mb</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-effects">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+    </div>
+
+    <main class="container">
+        <header>
+            <h1>Network Speed</h1>
+            <p>512Mb Data Transfer Test</p>
+        </header>
+
+        <section class="test-area">
+            <div class="gauge-container">
+                <svg class="gauge-svg" viewBox="0 0 200 200">
+                    <!-- Gauge Background -->
+                    <circle class="gauge-bg" cx="100" cy="100" r="90" />
+                    <!-- Gauge Progress -->
+                    <circle class="gauge-progress" id="gaugeProgress" cx="100" cy="100" r="90" />
+                </svg>
+                <div class="gauge-value">
+                    <span id="speedValue">0</span>
+                    <span class="unit">Mbps</span>
+                </div>
+                <div class="gauge-label" id="gaugeLabel">Ready</div>
+            </div>
+
+            <button id="startBtn" class="primary-btn">
+                <span>Start Test</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
+                </svg>
+            </button>
+        </section>
+
+        <section class="results-area">
+            <div class="result-card" id="downloadCard">
+                <div class="result-header">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 5v14M19 12l-7 7-7-7"/>
+                    </svg>
+                    Download
+                </div>
+                <div class="result-metric">
+                    <span class="value" id="downloadFinal">--</span>
+                    <span class="metric-unit">Mbps</span>
+                </div>
+            </div>
+            
+            <div class="result-card" id="uploadCard">
+                <div class="result-header">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 19V5M5 12l7-7 7 7"/>
+                    </svg>
+                    Upload
+                </div>
+                <div class="result-metric">
+                    <span class="value" id="uploadFinal">--</span>
+                    <span class="metric-unit">Mbps</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

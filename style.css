@@ -1,0 +1,270 @@
+:root {
+    --bg-dark: #0a0a0f;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --primary: #9d4edd;
+    --secondary: #3a86ff;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0b0;
+    --accent: #00f5d4;
+    --danger: #ff006e;
+    --font-family: 'Outfit', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Background Glowing Effects */
+.background-effects {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.5;
+    animation: drift 20s infinite alternate ease-in-out;
+}
+
+.glow-1 {
+    top: -10%;
+    left: -10%;
+    background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+}
+
+.glow-2 {
+    bottom: -10%;
+    right: -10%;
+    background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
+}
+
+@keyframes drift {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(100px, 50px) scale(1.1); }
+}
+
+/* Main Container */
+.container {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 40px;
+    width: 90%;
+    max-width: 500px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 5px;
+    background: linear-gradient(to right, #fff, var(--text-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+header p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-weight: 300;
+    margin-bottom: 40px;
+}
+
+/* Gauge Section */
+.test-area {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.gauge-container {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.gauge-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.gauge-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.05);
+    stroke-width: 12;
+}
+
+.gauge-progress {
+    fill: none;
+    stroke: url(#gradient); 
+    /* We'll inject a gradient def or use single color. Let's use var(--accent) for now and update via JS */
+    stroke: var(--accent);
+    stroke-width: 12;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.1s linear, stroke 0.3s ease;
+    filter: drop-shadow(0 0 10px rgba(0, 245, 212, 0.6));
+}
+
+.gauge-value {
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#speedValue {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.unit {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+.gauge-label {
+    position: absolute;
+    bottom: 35px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+/* Start Button */
+.primary-btn {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border: none;
+    border-radius: 50px;
+    padding: 15px 40px;
+    color: white;
+    font-family: var(--font-family);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(157, 78, 221, 0.3);
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 25px rgba(58, 134, 255, 0.4);
+}
+
+.primary-btn:active {
+    transform: translateY(1px);
+}
+
+.primary-btn.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+/* Results Area */
+.results-area {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+}
+
+.result-card {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+.result-card.active {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--accent);
+    box-shadow: 0 0 15px rgba(0, 245, 212, 0.2);
+}
+
+.result-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.result-metric {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+}
+
+.result-metric .value {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.result-metric .metric-unit {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+/* Utility Animations */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+.pulsing {
+    animation: pulse 1s infinite;
+}
